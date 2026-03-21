@@ -6,7 +6,9 @@ import type { ContextEngine } from "./types.js";
  * A factory that creates a ContextEngine instance.
  * Supports async creation for engines that need DB connections etc.
  */
-export type ContextEngineFactory = () => ContextEngine | Promise<ContextEngine>;
+export type ContextEngineFactory = (
+  config?: OpenClawConfig,
+) => ContextEngine | Promise<ContextEngine>;
 export type ContextEngineRegistrationResult = { ok: true } | { ok: false; existingOwner: string };
 
 type RegisterContextEngineForOwnerOptions = {
@@ -423,5 +425,5 @@ export async function resolveContextEngine(config?: OpenClawConfig): Promise<Con
     );
   }
 
-  return wrapContextEngineWithSessionKeyCompat(await entry.factory());
+  return wrapContextEngineWithSessionKeyCompat(await entry.factory(config));
 }

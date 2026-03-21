@@ -20,6 +20,10 @@ export {
 export type { ContextEngineFactory } from "./registry.js";
 
 export { LegacyContextEngine, registerLegacyContextEngine } from "./legacy.js";
+export {
+  PerMessageSummaryContextEngine,
+  registerPerMessageSummaryContextEngine,
+} from "./per-message-summary.js";
 export { delegateCompactionToRuntime } from "./delegate.js";
 
 export { ensureContextEnginesInitialized } from "./init.js";
